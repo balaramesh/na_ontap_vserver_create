@@ -14,7 +14,7 @@
     name: "{{ item.name }}"
     root_volume: "{{ item.name }}_root"
     root_volume_aggregate: "{{ item.aggr }}"
-    root_volume_security_style: unix
+    root_volume_security_style: "cifs if protocol == 'cifs' else 'nfs'"
     hostname: "{{ hostname }}"
     username: "{{ username }}"
     password: "{{ password }}"
