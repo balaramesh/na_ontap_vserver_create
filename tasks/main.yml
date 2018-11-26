@@ -46,6 +46,21 @@
     validate_certs: false
   with_items:
     "{{ vservers }}"
+- name: Create DNS
+  na_ontap_dns:
+    state: present
+    vserver: "{{ item.name }}"
+    domains: "{{ item.dns_domains }}"
+    nameservers: "{{ item.dns_nameservers }}"
+    hostname: "{{ hostname }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    ontapi: "{{ ontap_facts.ontap_version }}"
+    https: true
+    validate_certs: false
+  with_items:
+    "{{ vservers }}"
+  when: item.dns_nameservers is defined
 - name: Create CIFS Server
   na_ontap_cifs_server:
     state: present
@@ -103,18 +118,3 @@
     validate_certs: false
   with_items:
     "{{ vservers }}"
-- name: Create DNS
-  na_ontap_dns:
-    state: present
-    vserver: "{{ item.name }}"
-    domains: "{{ item.dns_domains }}"
-    nameservers: "{{ item.dns_nameservers }}"
-    hostname: "{{ hostname }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    ontapi: "{{ ontap_facts.ontap_version }}"
-    https: true
-    validate_certs: false
-  with_items:
-    "{{ vservers }}"
-  when: item.dns_nameservers is defined
