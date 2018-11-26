@@ -65,7 +65,7 @@
     validate_certs: false
   with_items:
     "{{ vservers }}"
-  when: item.protocol == "cifs"
+  when: item.protocol | search("cifs")
 - name: Create NFS Server
   na_ontap_nfs:
     state: present
@@ -85,7 +85,7 @@
     validate_certs: false
   with_items:
     "{{ vservers }}"
-  when: item.protocol == "nfs"
+  when: item.protocol | search("nfs")
 - name: Setup default rules
   na_ontap_export_policy_rule:
     state: present
