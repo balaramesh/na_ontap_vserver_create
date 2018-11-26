@@ -70,7 +70,7 @@
     force: "{{ item.force }}"
     admin_password: "{{ item.admin_password }}"
     admin_user_name: "{{ item.admin_user_name }}"
-    ou: "{{ item.ou }}"
+    #ou: "{{ item.ou }}"
     service_state: started
     hostname: "{{ hostname }}"
     username: "{{ username }}"
