@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  roles:
+  - role: schmots1.na_ontap_vserver_create
+    vservers: 
+      - { username: admin, password: Netapp1!, hostname: 192.168.0.101, name: temp, aggr: aggr1, node: cluster1-01, address: 192.168.0.199, netmask: 255.255.255.0, protocol: nfs, port: e0c, rw: any }
+    username: "admin"
+    password: "Netapp1!"
+    hostname: "192.168.0.101"
